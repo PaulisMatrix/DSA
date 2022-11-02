@@ -40,3 +40,12 @@
     https://github.com/yangshun/tech-interview-handbook
     
     https://jeremyaguilon.me/blog/visualizing_four_key_interview_algorithms
+
+6. Data structure and algorithms:
+
+    https://cp-algorithms.com/
+    
+    https://www.cmi.ac.in/~madhavan/nptel-python-2016/
+
+    https://jovian.ai/learn/data-structures-and-algorithms-in-python
+    
