@@ -52,3 +52,22 @@ def display(val):
 
 display("Hello")
 
+def decorated_function(val1):
+    def wrapper(func):
+        print("Executing wrapper",val1)
+        def again_wrapper(val):
+            print("Executing again wrapper ",end="")
+            if isinstance(val,int):
+                print(val*2)
+            else:
+                print(val)
+            return func(val)
+        return again_wrapper
+    return wrapper
+
+@decorated_function(100)   #display = decorated_function(display)
+def display(val):
+    print("In display, val is :{}".format(val))
+
+print("AGAIN WRAPPER EXECUTOR")
+display("Hello")
