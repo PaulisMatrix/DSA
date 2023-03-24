@@ -1,49 +1,50 @@
 from collections import deque
 
+
 class Node:
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
         self.next = None
+
 
 class SingleLinkedList:
     def __init__(self):
         self.head = None
 
-    
     def traverse_list(self):
         if self.head is None:
             print("List is empty!")
-            return 
+            return
         else:
             temp = self.head.next
-            #temp = self.head
+            # temp = self.head
             while temp:
-                print(temp.data,end="->")
+                print(temp.data, end="->")
                 temp = temp.next
-                
+
                 if temp == self.head.next:
                     break
-                
+
             print("None")
 
-    def insert_at_start(self,data):
+    def insert_at_start(self, data):
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
 
-    def insert_at_end(self,data):
+    def insert_at_end(self, data):
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
             self.head.next = self.head
-            return 
+            return
         else:
-            '''
+            """
             temp = self.head
             while temp.next is not None:
                 temp = temp.next
             temp.next = new_node
-            '''
+            """
             new_node.next = self.head.next
             self.head.next = new_node
             self.head = new_node
@@ -56,11 +57,11 @@ class SingleLinkedList:
             while fast_ptr.next is not None:
                 slow_ptr = slow_ptr.next
                 fast_ptr = fast_ptr.next.next
-            print("The Middle Element is:",slow_ptr.data)
+            print("The Middle Element is:", slow_ptr.data)
         else:
             print("list is empty")
 
-    def insert_at_given_pos(self,x,data):
+    def insert_at_given_pos(self, x, data):
         if self.head is None:
             print("List is Empty")
             return
@@ -68,20 +69,19 @@ class SingleLinkedList:
         prev = None
         curr = self.head
         i = 0
-        while i!=x:
+        while i != x:
             prev = curr
             curr = curr.next
-            i+=1
-        
+            i += 1
+
         prev.next = new_node
         new_node.next = curr
-        
 
     def reverse_list(self):
         if self.head is None:
             print("List is Empty")
             return
-        
+
         next_node = None
         prev = None
         curr = self.head
@@ -91,28 +91,28 @@ class SingleLinkedList:
             curr.next = prev
             prev = curr
             curr = next_node
-        self.head = prev        
+        self.head = prev
 
-    def search(self,x):
+    def search(self, x):
         if self.head is None:
             print("List is Empty!")
-        
+
         temp = self.head
-        i = 0 
+        i = 0
         while temp is not None:
             if temp.data == x:
-                print("%d element found at %d position" %(x,i) )
+                print("%d element found at %d position" % (x, i))
                 break
             temp = temp.next
-            i+=1
+            i += 1
         else:
-            print("Element %d not found" %(x))
+            print("Element %d not found" % (x))
 
-    def delete_element(self,x):
+    def delete_element(self, x):
         if self.head is None:
             print("List is Empty")
         prev = None
-        curr = self.head 
+        curr = self.head
 
         while curr.data != x:
             prev = curr
@@ -124,22 +124,22 @@ class SingleLinkedList:
     def count(self):
         if self.head is None:
             print("list is empty")
-        
-        i = 0 
+
+        i = 0
         temp = self.head
 
         while temp is not None:
             temp = temp.next
-            i+=1
+            i += 1
 
-        #print("Number of elements in the list %d" %(i))
+        # print("Number of elements in the list %d" %(i))
         return i
-    
+
     def detect_loop(self):
         sp = self.head
         fp = self.head
 
-        while(sp and fp and fp.next):
+        while sp and fp and fp.next:
             sp = sp.next
             fp = fp.next.next
             if sp == fp:
@@ -148,13 +148,13 @@ class SingleLinkedList:
         else:
             return 0
 
-    def remove_loop(self,loop_node):
+    def remove_loop(self, loop_node):
         ptr1 = self.head
 
-        while(1):
+        while 1:
             ptr2 = loop_node
 
-            while(ptr2.next!=loop_node and ptr2.next!=ptr1):
+            while ptr2.next != loop_node and ptr2.next != ptr1:
                 ptr2 = ptr2.next
 
             if ptr2.next == ptr1:
@@ -164,7 +164,7 @@ class SingleLinkedList:
 
         ptr2.next = None
 
-    '''
+    """
     def bubblesort(self):
         temp = self.head
         swap = None
@@ -196,11 +196,12 @@ class SingleLinkedList:
 
                 temp.next = start.next
                 temp = start.next
-    '''
+    """
+
     def remDuplicates(self):
         if self.head is None:
             print("list is empty")
-        
+
         myset = set()
         cur = self.head
         myset.add(cur.data)
@@ -211,30 +212,30 @@ class SingleLinkedList:
             else:
                 myset.add(cur.next.data)
                 cur = cur.next
-    
-    def kToLastElement(self,k):
+
+    def kToLastElement(self, k):
         if self.head is None:
             print("list is empty")
         len = self.count()
         print(len)
         cur = self.head
-        while k-1>0:
-            if k<len:
+        while k - 1 > 0:
+            if k < len:
                 cur = cur.next
-                k-=1
+                k -= 1
             else:
-                print("{} is greater than length {} of the list".format(k,len))
+                print("{} is greater than length {} of the list".format(k, len))
                 break
         while cur:
-            print(cur.data,end="->")
+            print(cur.data, end="->")
             cur = cur.next
-        
-    def deleteNode(self,node):
+
+    def deleteNode(self, node):
         if self.head is None:
             print("list is empty")
         cur = self.head
 
-        while cur.next.data!=node.data:
+        while cur.next.data != node.data:
             cur = cur.next
         cur.next = node.next
 
@@ -257,40 +258,38 @@ class SingleLinkedList:
                 break
         else:
             print("Is a palindrome")
-    
+
 
 if __name__ == "__main__":
 
     sll = SingleLinkedList()
-    sll.insert_at_end('A')
-    sll.insert_at_end('B')
-    sll.insert_at_end('C')
-    sll.insert_at_end('D')
-    sll.insert_at_end('E')
-    sll.insert_at_end('C')
-    
+    sll.insert_at_end("A")
+    sll.insert_at_end("B")
+    sll.insert_at_end("C")
+    sll.insert_at_end("D")
+    sll.insert_at_end("E")
+    sll.insert_at_end("C")
 
-    
     sll.traverse_list()
 
-    #sll.isPalindrome()
-    #sll.deleteNode(sll.head.next.next.next.next)
-    #sll.remDuplicates()
-    #sll.bubblesort()
+    # sll.isPalindrome()
+    # sll.deleteNode(sll.head.next.next.next.next)
+    # sll.remDuplicates()
+    # sll.bubblesort()
 
-    #k = int(input("Enter the k"))
-    #sll.kToLastElement(k)
+    # k = int(input("Enter the k"))
+    # sll.kToLastElement(k)
 
-    #sll.removeduplicates()
-    #creating a loop
-    #sll.head.next.next.next.next = sll.head.next
+    # sll.removeduplicates()
+    # creating a loop
+    # sll.head.next.next.next.next = sll.head.next
 
-    #sll.detect_loop()
-    #sll.removeduplicates()
+    # sll.detect_loop()
+    # sll.removeduplicates()
 
-    #sll.traverse_list()
-    
-    '''
+    # sll.traverse_list()
+
+    """
     sll = SingleLinkedList()
     sll.insert_at_end(1)
     sll.insert_at_end(2)
@@ -314,4 +313,4 @@ if __name__ == "__main__":
     
     sll.reverse_list()
     sll.traverse_list()
-'''
+"""

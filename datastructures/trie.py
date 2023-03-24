@@ -1,5 +1,7 @@
 # Solution for this exercise: https://www.hackerearth.com/practice/data-structures/advanced-data-structures/trie-keyword-tree/tutorial/
-'''
+from collections import deque
+
+"""
 class TrieNode:
     def __init__(self):
         self.children = {}
@@ -46,8 +48,7 @@ if __name__=="__main__":
         string = input()
         print(t.search(string))
         queries-=1
-'''
-
+"""
 
 
 class TrieNode:
@@ -57,12 +58,10 @@ class TrieNode:
 
 
 class Trie:
-
     def __init__(self):
         self.root = TrieNode()
 
-
-    def insert(self,word):
+    def insert(self, word):
         node = self.root
         for char in word:
             if char not in node.children:
@@ -72,8 +71,8 @@ class Trie:
             else:
                 node = node.children[char]
         node.end = True
-    
-    def search(self,word):
+
+    def search(self, word):
         node = self.root
 
         for char in word:
@@ -82,7 +81,7 @@ class Trie:
             node = node.children[char]
         return node.end
 
-    def prefix(self,word):
+    def prefix(self, word):
         node = self.root
 
         for char in word:
@@ -90,13 +89,25 @@ class Trie:
                 return False
             node = node.children[char]
         return True
-        
-    
+
+    def traverse(self):
+        q = deque()
+        q.append(self.root)
+
+        while q:
+            node = q.popleft()
+            if not node.end:
+                first = list(node.children.keys())[0]
+                print(first, end="")
+                q.append(node.children[first])
+
+
 if __name__ == "__main__":
     t = Trie()
-    t.insert('apple')
-    t.insert('cat')
-    print(t.search('apple'))
-    print(t.search('dog'))
-    print(t.prefix('apl'))    
-    
+    t.insert("apple")
+    t.insert("cat")
+    print("Your trie:")
+    t.traverse()
+    # print(t.search("apple"))
+    # print(t.search("dog"))
+    # print(t.prefix("apl"))

@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
         self.next = None
         self.prev = None
@@ -10,8 +10,7 @@ class DoublyLinkedList:
         self.head = None
         self.length = 0
 
-    
-    def addStart(self,val):
+    def addStart(self, val):
         if self.head == None:
             self.head = Node(val)
             self.prev = None
@@ -22,19 +21,19 @@ class DoublyLinkedList:
             node.prev = None
             self.head = node
 
-    def addEnd(self,val):
-        
+    def addEnd(self, val):
+
         node = Node(val)
-        if self.head==None:
+        if self.head == None:
             self.head = node
-            node.prev=node.next=None
-            #print("list is empty")
+            node.prev = node.next = None
+            # print("list is empty")
 
         else:
             cur = self.head
             while cur.next:
                 cur = cur.next
-            
+
             cur.next = node
             node.prev = cur
             node.next = None
@@ -46,15 +45,14 @@ class DoublyLinkedList:
         else:
             cur = self.head
             while cur:
-                print(cur.data,end="->")
+                print(cur.data, end="->")
                 cur = cur.next
-
 
 
 if __name__ == "__main__":
     dll = DoublyLinkedList()
-    #dll.traverse()
-    
+    # dll.traverse()
+
     dll.addEnd(1)
     dll.addStart(2)
     dll.addEnd(3)
@@ -62,11 +60,3 @@ if __name__ == "__main__":
     dll.addEnd(100)
 
     dll.traverse()
-
-
-
-
-
-
-
-
